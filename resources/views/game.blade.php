@@ -23,6 +23,7 @@
     <script>
         $(document).ready(function () {
             var start = new Date().getTime();
+            var error = 0;
             $('input').change(function () {
                 $('#id').val(this.id);
                 $('#value').val(this.value);
@@ -38,6 +39,7 @@
                             solution();
                         } else {
                             $($('#'+json.id)).addClass('danger');
+                            error++;
                         }
 
                     }
@@ -58,6 +60,7 @@
                     var finish = new Date().getTime();
                     var time = (finish - start) / 1000;
                     $('#main-div').append('<p>Ви знайшли розв\'язок за ' + time + ' сек.</p><p>Рівень складності: {{ Request::get('lvl') * 100 }}%</p>');
+                    $('#main-div').append('<p>Кількість помилок : ' + error + '</p>');
                 }
             }
         });
